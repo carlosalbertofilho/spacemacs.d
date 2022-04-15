@@ -1,0 +1,8 @@
+* About
+
+This is my configuration of the spacemacs.
+For more information visit the spacemacs website.
+
+* Install Steps
+
+

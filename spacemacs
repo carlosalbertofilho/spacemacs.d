@@ -41,16 +41,36 @@ This function should only modify configuration layer settings."
      auto-completion
      better-defaults
      emacs-lisp
-     ;; git
+     ;; git support layer
+     (git :variables
+          git-enable-magit-gitflow-plugin t)
      helm
-     ;; lsp
+     ;; LSP support layer
+     (lsp :variables
+          css-enable-lsp  t
+          less-enable-lsp t
+          scss-enable-lsp t
+          html-enable-lsp t
+          lsp-lens-enable t)
      ;; markdown
-     multiple-cursors
-     ;; org
+     ;; multiple-cursors support layer
+     (multiple-cursors :variables
+                       multiple-cursors-backend 'evil-mc)
+     ;; org support layer
+     (org :variables
+          org-todo-dependencies-strategy 'naive-auto
+          org-enable-notifications t
+          org-start-notification-daemon-on-startup t)
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
-     ;; spell-checking
+     ;; html support layer
+     web-beautify
+     (html :variables
+           web-fmt-tool 'web-beautify)
+     ;; spell-checking support layer
+     (spell-checking :variables
+                     enable-flyspell-auto-completion t)
      ;; syntax-checking
      ;; version-control
      treemacs)
@@ -554,8 +574,41 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  ;; Global git commit mode
+  (require 'git-commit)
+  (global-git-commit-mode t)
+
+  ;; Enabling multi-dictionary support with hunspell
+  (with-eval-after-load "ispell"
+    (setq ispell-program-name "hunspell")
+    ;; ispell-set-spellchecker-params has to be called
+    ;; before ispell-hunspell-add-multi-dic will work
+    (ispell-set-spellchecker-params)
+    (ispell-hunspell-add-multi-dic "pt_BR,en_US")
+    (setq ispell-dictionary "pt_BR,en_US"))
+
+
 )
 
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(flyspell-popup flyspell-correct-helm flyspell-correct auto-dictionary yasnippet-snippets xterm-color web-mode web-beautify vterm unfill treemacs-magit terminal-here tagedit smeargle slim-mode shell-pop scss-mode sass-mode pug-mode prettier-js orgit-forge orgit org-wild-notifier org-rich-yank org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-contrib org-cliplink mwim multi-term magit-gitflow magit-popup lsp-ui lsp-treemacs lsp-origami origami impatient-mode simple-httpd htmlize helm-org-rifle helm-lsp lsp-mode helm-ls-git helm-git-grep helm-css-scss helm-company helm-c-yasnippet haml-mode gnuplot gitignore-templates git-timemachine git-modes git-messenger git-link fuzzy forge yaml markdown-mode magit ghub closql emacsql-sqlite emacsql treepy magit-section git-commit with-editor transient flycheck-pos-tip pos-tip evil-org eshell-z eshell-prompt-extras esh-help emmet-mode company-web web-completion-data company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons restart-emacs request rainbow-delimiters quickrun popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line macrostep lorem-ipsum link-hint inspector info+ indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-terminal-cursor-changer evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav elisp-def editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(highlight-parentheses-highlight ((nil (:weight ultra-bold))) t))
+)
