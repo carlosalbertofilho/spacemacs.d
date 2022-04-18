@@ -19,6 +19,10 @@ echo Web Beautify layer
 echo
 npm i -g js-beautify
 echo --------------------------------------------------
+echo JavaScript layer
+echo
+npm i -g jshint import-js
+echo --------------------------------------------------
 echo Web Beautify layer
 echo
 sudo dnf install -y hunspell hunspell-en-US hunspell-pt aspell-pt_BR
