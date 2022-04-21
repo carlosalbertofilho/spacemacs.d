@@ -1,8 +1,35 @@
 * About
 
 This is my configuration of the spacemacs.
-For more information visit the spacemacs website.
+For more information visit the [[https://www.spacemacs.org/doc/DOCUMENTATION.html][Spacemacs website]].
 
 * Install Steps
++ Clone Repository
+  #+BEGIN_SRC bash
+  git clone https://github.com/carlosalbertofilho/spacemacs.d.git
+  #+END_SRC
++ Install dependencies
+  #+BEGIN_SRC bash
+    chmod +x spacemacs.d/dependenciesInstall.sh
+    ./spacemacs.d/dependenciesInstall.sh
+  #+END_SRC
+  
+* Layers included
++ auto-completion
++ better-defaults
++ git
++ lsp
++ markdown
++ multiple-cursors
++ org
++ shell
++ web-beautify
++ html
++ javascript
++ spell-checking
++ syntax-checking
++ version-control
++ treemacs
+
 
 
