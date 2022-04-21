@@ -104,6 +104,9 @@ This function should only modify configuration layer settings."
                       version-control-global-margin t)
      ;; PDF support layer
      pdf
+     ;; JAVA support layer
+     (java :variables
+           java-backend 'meghanada)
      treemacs)
 
 

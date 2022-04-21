@@ -31,6 +31,4 @@ For more information visit the [[https://www.spacemacs.org/doc/DOCUMENTATION.htm
 + version-control
 + treemacs
 + pdf
-
-
-
++ Java
