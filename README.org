@@ -30,6 +30,7 @@ For more information visit the [[https://www.spacemacs.org/doc/DOCUMENTATION.htm
 + syntax-checking
 + version-control
 + treemacs
++ pdf
 
 
 
