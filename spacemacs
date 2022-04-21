@@ -74,7 +74,10 @@ This function should only modify configuration layer settings."
      (org :variables
           org-todo-dependencies-strategy 'naive-auto
           org-enable-notifications t
-          org-start-notification-daemon-on-startup t)
+          org-start-notification-daemon-on-startup t
+          org-enable-valign t
+          org-enable-appear-support t
+          org-enable-transclusion-support t)
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
