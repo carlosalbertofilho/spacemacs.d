@@ -32,3 +32,4 @@ For more information visit the [[https://www.spacemacs.org/doc/DOCUMENTATION.htm
 + treemacs
 + pdf
 + Java
++ EWW
