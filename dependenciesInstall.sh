@@ -39,3 +39,7 @@ echo --------------------------------------------------
 echo Markdown live preview support layer
 echo
 npm i -g vmd
+echo --------------------------------------------------
+echo Java JDK support
+echo
+sudo dnf install -y java-latest-openjdk maven-openjdk17
