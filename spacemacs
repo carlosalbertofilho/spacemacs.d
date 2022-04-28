@@ -50,11 +50,12 @@ This function should only modify configuration layer settings."
      helm
      ;; LSP support layer
      (lsp :variables
-          css-enable-lsp  t
-          less-enable-lsp t
-          scss-enable-lsp t
-          html-enable-lsp t
-          lsp-lens-enable t)
+          lsp-modeline-code-actions-enable t
+          lsp-use-lsp-ui t
+          lsp-ui-doc-enable t
+          lsp-ui-sideline-enable t
+          lsp-lens-enable t
+          lsp-modeline-code-actions-segments '(count icon))
      ;; markdown support layer
      (markdown :variables
                markdown-live-preview-engine 'vmd)
@@ -75,6 +76,10 @@ This function should only modify configuration layer settings."
      ;; html support layer
      web-beautify
      (html :variables
+           css-enable-lsp  t
+           less-enable-lsp t
+           scss-enable-lsp t
+           html-enable-lsp t
            web-fmt-tool 'web-beautify)
      ;; javascript support layer
      (javascript :variables
