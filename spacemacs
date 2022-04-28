@@ -40,17 +40,8 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      ;; auto-completion support Layer
      (auto-completion :variables
-                      auto-completion-return-key-behavior 'complete
-                      auto-completion-tab-key-behavior 'cycle
-                      auto-completion-complete-with-key-sequence nil
-                      auto-completion-complete-with-key-sequence-delay 0.1
-                      auto-completion-minimum-prefix-length 2
-                      auto-completion-idle-delay 0.2
-                      auto-completion-private-snippets-directory nil
-                      auto-completion-enable-snippets-in-popup t
-                      auto-completion-enable-help-tooltip t
-                      auto-completion-use-company-box t
-                      auto-completion-enable-sort-by-usage t)
+                      auto-completion-enable-sort-by-usage t
+                      auto-completion-enable-snippets-in-popup t)
      better-defaults
      emacs-lisp
      ;; git support layer
@@ -87,14 +78,11 @@ This function should only modify configuration layer settings."
            web-fmt-tool 'web-beautify)
      ;; javascript support layer
      (javascript :variables
-                 javascript-backend 'lsp
-                 javascript-repl 'nodejs
-                 js2-include-node-externs t
+                 javascript-backend 'tern
+                 javascript-repl 'skewer
                  javascript-import-tool 'import-js
                  javascript-fmt-tool 'web-beautify
-                 javascript-fmt-on-save t
-                 js2-basic-offset 2
-                 js-indent-level 2)
+                 javascript-fmt-on-save t)
      ;; spell-checking support layer
      (spell-checking :variables
                      enable-flyspell-auto-completion t)
