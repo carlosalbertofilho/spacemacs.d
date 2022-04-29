@@ -83,11 +83,14 @@ This function should only modify configuration layer settings."
            web-fmt-tool 'web-beautify)
      ;; javascript support layer
      (javascript :variables
-                 javascript-backend 'tern
+                 javascript-backend 'lsp
                  javascript-repl 'skewer
                  javascript-import-tool 'import-js
                  javascript-fmt-tool 'web-beautify
-                 javascript-fmt-on-save t)
+                 js2-basic-offset 2
+                 js-indent-level 2)
+     ;; automatically wrapping indent
+     dtrt-indent
      ;; spell-checking support layer
      (spell-checking :variables
                      enable-flyspell-auto-completion t)
