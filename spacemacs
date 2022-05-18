@@ -101,7 +101,9 @@ This function should only modify configuration layer settings."
      ;; PDF support layer
      pdf
      ;; JAVA support layer
-     java
+     (java :variables
+           java-backend 'lsp
+           java/post-init-flycheck t)
      ;; Emacs Application Framework - EAF support layer
      eaf
      ;; Emacs Web Browser - EWW
