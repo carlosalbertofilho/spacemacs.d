@@ -103,7 +103,9 @@ This function should only modify configuration layer settings."
      ;; JAVA support layer
      (java :variables
            java-backend 'lsp
-           java/post-init-flycheck t)
+           java/post-init-flycheck t
+           syntax-checking-enable-by-default t
+           syntax-checking-enable-tooltips t)
      ;; Emacs Application Framework - EAF support layer
      eaf
      ;; Emacs Web Browser - EWW
