@@ -41,7 +41,8 @@ This function should only modify configuration layer settings."
      ;; auto-completion support Layer
      (auto-completion :variables
                       auto-completion-enable-sort-by-usage t
-                      auto-completion-enable-snippets-in-popup t)
+                      auto-completion-enable-snippets-in-popup t
+                      auto-completion-enable-help-tooltip t)
      better-defaults
      emacs-lisp
      ;; git support layer
