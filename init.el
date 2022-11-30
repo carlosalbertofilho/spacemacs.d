@@ -38,81 +38,21 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ;; auto-completion support Layer
-     (auto-completion :variables
-                      auto-completion-enable-sort-by-usage t
-                      auto-completion-enable-snippets-in-popup t
-                      auto-completion-enable-help-tooltip t)
-     better-defaults
+     ;; auto-completion
+     ;; better-defaults
      emacs-lisp
-     ;; git support layer
-     (git :variables
-          git-enable-magit-gitflow-plugin t)
+     ;; git
      helm
-     ;; LSP support layer
-     (lsp :variables
-          lsp-modeline-code-actions-enable t
-          lsp-use-lsp-ui t
-          lsp-ui-doc-enable t
-          lsp-ui-sideline-enable t
-          lsp-lens-enable t
-          lsp-modeline-code-actions-segments '(count icon))
-     ;; markdown support layer
-     (markdown :variables
-               markdown-live-preview-engine 'vmd)
-     ;; multiple-cursors support layer
-     (multiple-cursors :variables
-                       multiple-cursors-backend 'evil-mc)
-     ;; org support layer
-     (org :variables
-          org-todo-dependencies-strategy 'naive-auto
-          org-enable-notifications t
-          org-start-notification-daemon-on-startup t
-          org-enable-valign t
-          org-enable-appear-support t
-          org-enable-transclusion-support t)
-     (shell :variables
-            shell-default-height 30
-            shell-default-position 'bottom)
-     ;; html support layer
-     web-beautify
-     (html :variables
-           css-enable-lsp  t
-           less-enable-lsp t
-           scss-enable-lsp t
-           html-enable-lsp t
-           web-fmt-tool 'web-beautify)
-     ;; javascript support layer
-     (javascript :variables
-                 javascript-backend 'lsp
-                 javascript-repl 'skewer
-                 javascript-import-tool 'import-js
-                 javascript-fmt-tool 'web-beautify
-                 js2-basic-offset 2
-                 js-indent-level 2)
-     ;; automatically wrapping indent
-     dtrt-indent
-     ;; spell-checking support layer
-     (spell-checking :variables
-                     enable-flyspell-auto-completion t)
-     syntax-checking
-     ;; version-control support layer
-     (version-control :variables
-                      version-control-global-margin t)
-     ;; PDF support layer
-     pdf
-     ;; config syntax check
-     (syntax-checking :variables
-                      syntax-checking-enable-by-default t
-                      syntax-checking-enable-tooltips t)
-     ;; JAVA support layer
-     (java :variables
-           java-backend 'lsp
-           java/post-init-flycheck t)
-     ;; Emacs Application Framework - EAF support layer
-     eaf
-     ;; Emacs Web Browser - EWW
-     eww
+     ;; lsp
+     ;; markdown
+     multiple-cursors
+     ;; org
+     ;; (shell :variables
+     ;;        shell-default-height 30
+     ;;        shell-default-position 'bottom)
+     ;; spell-checking
+     ;; syntax-checking
+     ;; version-control
      treemacs)
 
 
@@ -239,6 +179,13 @@ It should only modify the values of Spacemacs settings."
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
    dotspacemacs-startup-banner 'official
+
+   ;; Scale factor controls the scaling (size) of the startup banner. Default
+   ;; value is `auto' for scaling the logo automatically to fit all buffer
+   ;; contents, to a maximum of the full image height and a minimum of 3 line
+   ;; heights. If set to a number (int or float) it is used as a constant
+   ;; scaling factor for the default logo size.
+   dotspacemacs-startup-banner-scale 'auto
 
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
@@ -430,6 +377,11 @@ It should only modify the values of Spacemacs settings."
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
    dotspacemacs-inactive-transparency 90
 
+   ;; A value from the range (0..100), in increasing opacity, which describes the
+   ;; transparency level of a frame background when it's active or selected. Transparency
+   ;; can be toggled through `toggle-background-transparency'. (default 90)
+   dotspacemacs-background-transparency 90
+
    ;; If non-nil show the titles of transient states. (default t)
    dotspacemacs-show-transient-state-title t
 
@@ -468,7 +420,7 @@ It should only modify the values of Spacemacs settings."
    ;;   :size-limit-kb 1000)
    ;; When used in a plist, `visual' takes precedence over `relative'.
    ;; (default nil)
-   dotspacemacs-line-numbers 'relative
+   dotspacemacs-line-numbers nil
 
    ;; Code folding method. Possible values are `evil', `origami' and `vimish'.
    ;; (default 'evil)
@@ -539,7 +491,9 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil - same as frame-title-format)
    dotspacemacs-icon-title-format nil
 
-   ;; Show trailing whitespace (default t)
+   ;; Color highlight trailing whitespace in all prog-mode and text-mode derived
+   ;; modes such as c++-mode, python-mode, emacs-lisp, html-mode, rst-mode etc.
+   ;; (default t)
    dotspacemacs-show-trailing-whitespace t
 
    ;; Delete whitespace while saving buffer. Possible values are `all'
@@ -597,43 +551,6 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  ;;; save & shutdown when we get an "end of session" signal on dbus 
-(require 'dbus)
-
-(defun my-register-signals (client-path)
-  "Register for the 'QueryEndSession' and 'EndSession' signals from
-Gnome SessionManager.
-
-When we receive 'QueryEndSession', we just respond with
-'EndSessionResponse(true, \"\")'.  When we receive 'EndSession', we
-append this EndSessionResponse to kill-emacs-hook, and then call
-kill-emacs.  This way, we can shut down the Emacs daemon cleanly
-before we send our 'ok' to the SessionManager."
-  (setq my-gnome-client-path client-path)
-  (let ( (end-session-response (lambda (&optional arg)
-                                 (dbus-call-method-asynchronously
-                                  :session "org.gnome.SessionManager" my-gnome-client-path
-                                  "org.gnome.SessionManager.ClientPrivate" "EndSessionResponse" nil
-                                  t "") ) ) )
-         (dbus-register-signal
-          :session "org.gnome.SessionManager" my-gnome-client-path
-          "org.gnome.SessionManager.ClientPrivate" "QueryEndSession"
-          end-session-response )
-         (dbus-register-signal
-          :session "org.gnome.SessionManager" my-gnome-client-path
-          "org.gnome.SessionManager.ClientPrivate" "EndSession"
-          `(lambda (arg)
-             (add-hook 'kill-emacs-hook ,end-session-response t)
-             (kill-emacs) ) ) ) )
-
-;; DESKTOP_AUTOSTART_ID is set by the Gnome desktop manager when emacs
-;; is autostarted.  We can use it to register as a client with gnome
-;; SessionManager.
-(dbus-call-method-asynchronously
- :session "org.gnome.SessionManager"
- "/org/gnome/SessionManager" 
- "org.gnome.SessionManager" "RegisterClient" 'my-register-signals
- "Emacs server" (getenv "DESKTOP_AUTOSTART_ID"))
 )
 
 
@@ -651,54 +568,8 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  ;; Global git commit mode
-  (require 'git-commit)
-  (global-git-commit-mode t)
-
-  ;; Enabling multi-dictionary support with hunspell
-  (with-eval-after-load "ispell"
-    (setq ispell-program-name "hunspell")
-    ;; ispell-set-spellchecker-params has to be called
-    ;; before ispell-hunspell-add-multi-dic will work
-    (ispell-set-spellchecker-params)
-    (ispell-hunspell-add-multi-dic "pt_BR,en_US")
-    (setq ispell-dictionary "pt_BR,en_US"))
-
-  ;; Config LSP by Java
-  ;; (setq lsp-java-vmargs `(
-  ;;                         "-noverify"
-  ;;                         "-Xmx1G"
-  ;;                         "-XX:+UseG1GC"
-  ;;                         "-XX:+UseStringDeduplication"
-  ;;                         ,(concat "-javaagent:" lombok-jar-path)
-  ;;                         ,(concat "-Xbootclasspath/a:" lombok-jar-path)
-  ;;                         "--add-opens"
-  ;;                         "java.base/java.util=ALL-UNNAMED"
-  ;;                         "--add-opens"
-  ;;                         "java.base/java.lang=ALL-UNNAMED"
-  ;;                         "--add-modules=ALL-SYSTEM"
-  ;;                         ))
 )
 
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
-(defun dotspacemacs/emacs-custom-settings ()
-  "Emacs custom settings.
-This is an auto-generated function, do not modify its content directly, use
-Emacs customize menu instead.
-This function is called at the very end of Spacemacs initialization."
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(yasnippet-lean js-react-redux-yasnippets mvn meghanada maven-test-mode lsp-java groovy-mode groovy-imports pcache valign pdf-view-restore pdf-tools tablist org-transclusion org-appear vmd-mode mmm-mode markdown-toc git-gutter-fringe fringe-helper git-gutter gh-md browse-at-remote company-statistics company-quickhelp company-box frame-local tern npm-mode nodejs-repl livid-mode skewer-mode js2-refactor multiple-cursors js2-mode js-doc import-js grizzl helm-gtags ggtags dap-mode bui counsel-gtags counsel swiper ivy add-node-modules-path flyspell-popup flyspell-correct-helm flyspell-correct auto-dictionary yasnippet-snippets xterm-color web-mode web-beautify vterm unfill treemacs-magit terminal-here tagedit smeargle slim-mode shell-pop scss-mode sass-mode pug-mode prettier-js orgit-forge orgit org-wild-notifier org-rich-yank org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-contrib org-cliplink mwim multi-term magit-gitflow magit-popup lsp-ui lsp-treemacs lsp-origami origami impatient-mode simple-httpd htmlize helm-org-rifle helm-lsp lsp-mode helm-ls-git helm-git-grep helm-css-scss helm-company helm-c-yasnippet haml-mode gnuplot gitignore-templates git-timemachine git-modes git-messenger git-link fuzzy forge yaml markdown-mode magit ghub closql emacsql-sqlite emacsql treepy magit-section git-commit with-editor transient flycheck-pos-tip pos-tip evil-org eshell-z eshell-prompt-extras esh-help emmet-mode company-web web-completion-data company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons restart-emacs request rainbow-delimiters quickrun popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line macrostep lorem-ipsum link-hint inspector info+ indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-terminal-cursor-changer evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav elisp-def editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(highlight-parentheses-highlight ((nil (:weight ultra-bold))) t))
-)
