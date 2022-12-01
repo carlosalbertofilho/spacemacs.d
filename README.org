@@ -1,3 +1,7 @@
+#+title: READEME
+#+author: Carlos Alberto Filho
+#+date: 30 Nov 2022
+
 * About
 
 This is my configuration of the spacemacs.
@@ -6,14 +10,15 @@ For more information visit the [[https://www.spacemacs.org/doc/DOCUMENTATION.htm
 * Install Steps
 + Clone Repository
   #+BEGIN_SRC bash
-  git clone https://github.com/carlosalbertofilho/spacemacs.d.git
+  git clone https://github.com/carlosalbertofilho/spacemacs.d.git .spacemacs.d
   #+END_SRC
 + Install dependencies
   #+BEGIN_SRC bash
     chmod +x spacemacs.d/dependenciesInstall.sh
     ./spacemacs.d/dependenciesInstall.sh
   #+END_SRC
-  
+
+
 * Layers included
 + auto-completion
 + better-defaults
@@ -23,13 +28,4 @@ For more information visit the [[https://www.spacemacs.org/doc/DOCUMENTATION.htm
 + multiple-cursors
 + org
 + shell
-+ web-beautify
-+ html
-+ javascript
-+ spell-checking
-+ syntax-checking
-+ version-control
 + treemacs
-+ pdf
-+ Java
-+ EWW
