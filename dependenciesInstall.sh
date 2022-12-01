@@ -1,14 +1,9 @@
 #!/usr/bin/env bash
 
 echo --------------------------------------------------
-echo install Ruby support on Fedora Linux
+echo spell check and Electron support layer
 echo
-sudo dnf install -y ruby-devel zlib-devel
-echo --------------------------------------------------
-echo SCSS linting requires SCSS-Lint version >= 0.43.0
-echo
-gem install scss_lint_reporter_checkstyle
-gem install scss_lint
+sudo pkg ins -y hunspell en-hunspell pt-hunspell electron19
 echo --------------------------------------------------
 echo Language Server Protocol
 echo
@@ -18,28 +13,24 @@ echo --------------------------------------------------
 echo TypeScript Server Protocol
 echo
 npm i -g typescript typescript-language-server
-npm i -g typescript javascript-typescript-langserver
+npm i -g typescript javascript-typescript-la ngserver
 echo --------------------------------------------------
 echo Flow suport
 echo
 npm i -g flow-bin
 echo --------------------------------------------------
+echo On-the-fly syntax checking
+echo
+npm i -g eslint babel-eslint eslint-plugin-react
+echo --------------------------------------------------
 echo Web Beautify layer
 echo
-npm i -g js-beautify
+npm i -g js-beautify prettier
 echo --------------------------------------------------
 echo JavaScript layer
 echo
 npm i -g jshint import-js eslint standard
 echo --------------------------------------------------
-echo spell check support layer
-echo
-sudo dnf install -y hunspell hunspell-en-US hunspell-pt aspell-pt_BR
-echo --------------------------------------------------
 echo Markdown live preview support layer
 echo
 npm i -g vmd
-echo --------------------------------------------------
-echo Java JDK support
-echo
-sudo dnf install -y java-latest-openjdk maven-openjdk17
