@@ -3,7 +3,7 @@
 echo --------------------------------------------------
 echo spell check and Electron support layer
 echo
-sudo pkg ins -y hunspell en-hunspell pt-hunspell electron19
+sudo pkg ins -y hunspell en-hunspell pt-hunspell electron19 rubygem-scss_lint
 echo --------------------------------------------------
 echo Language Server Protocol
 echo
