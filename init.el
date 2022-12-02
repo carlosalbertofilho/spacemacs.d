@@ -42,8 +42,7 @@ This function should only modify configuration layer settings."
      (javascript :variables
                  javascript-import-tool 'import-js
                  javascript-backend 'lsp
-                 javascript-fmt-tool 'prettier
-                 javascript-fmt-on-save t)
+                 javascript-fmt-tool 'prettier)
      (unicode-fonts :variables
                     unicode-fonts-enable-ligatures t)
      (auto-completion :variables
