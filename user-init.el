@@ -5,3 +5,6 @@
 
 ;; Node's bin locations
 (add-to-list 'exec-path "~/.npm-global/bin" t)
+
+;; Set Emmet on React
+(add-hook 'react-mode-hook 'emmet-mode)
