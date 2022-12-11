@@ -5,6 +5,9 @@
 ;; Install Highlight indent guides
 ;; font - https://github.com/DarthFennec/highlight-indent-guides
 
+;; Global git commit mode
+(require 'git-commit)
+(global-git-commit-mode t)
 
 ;; Set personal config
 (setq-local emmet-expand-jsx-className? t) 
