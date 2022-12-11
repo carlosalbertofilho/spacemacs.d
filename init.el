@@ -599,7 +599,7 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  (add-to-list 'load-path "~/.spacemacs.d/user-init.el")
+  (add-to-list 'load-path "~/.spacemacs.d/user-config.el")
 )
 
 
