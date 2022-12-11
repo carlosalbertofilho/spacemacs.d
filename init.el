@@ -580,7 +580,6 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  (add-to-list 'load-path "~/.spacemacs.d/user-init.el")
 )
 
 
@@ -589,7 +588,6 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 This function is called only while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included in the
 dump."
-  (add-to-list 'load-path "~/.spacemacs.d/layers.el")
 )
 
 
