@@ -7,6 +7,9 @@
 ;; packages of your choice and tweak some behaviors of Spacemacs loading.
 ;;
 
+;; install highlight-indent-guides.el
+;; https://github.com/DarthFennec/highlight-indent-guides
+(require 'highlight-indent-guides-method)
 
 ;; Utility functions for working with fonts in Emacs.
 ;; font - https://github.com/rolandwalker/font-utils

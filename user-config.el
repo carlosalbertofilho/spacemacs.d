@@ -4,6 +4,7 @@
 
 ;; Install Highlight indent guides
 ;; font - https://github.com/DarthFennec/highlight-indent-guides
+(add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 
 ;; Global git commit mode
 (require 'git-commit)
