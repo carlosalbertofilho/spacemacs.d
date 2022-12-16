@@ -39,6 +39,20 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      better-defaults
      emacs-lisp
+     (org :variables
+          org-enable-valign t
+          org-enable-appear-support t
+          org-enable-roam-support t
+          org-enable-trello-support t
+          org-enable-reveal-js-support t
+          org-enable-bootstrap-support t)
+     (latex :variables
+            latex-refresh-preview t
+            latex-enable-folding t
+            latex-enable-magic t
+            latex-backend 'lsp)
+     markdown
+     pdf
      (git :variables
           git-enable-magit-delta-plugin t)
      (auto-completion :variables
@@ -55,9 +69,7 @@ This function should only modify configuration layer settings."
                       auto-completion-enable-sort-by-usage t)
      helm
      lsp
-     markdown
      multiple-cursors
-     org
      shell-scripts
      (shell :variables
             shell-default-height 30
