@@ -37,26 +37,6 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     html
-     react
-     (javascript :variables
-                 javascript-import-tool 'import-js
-                 javascript-backend 'lsp
-                 javascript-fmt-tool 'prettier)
-     (unicode-fonts :variables
-                    unicode-fonts-enable-ligatures t)
-     (auto-completion :variables
-                      auto-completion-return-key-behavior 'complete
-                      auto-completion-tab-key-behavior 'cycle
-                      auto-completion-complete-with-key-sequence nil
-                      auto-completion-complete-with-key-sequence-delay 0.1
-                      auto-completion-minimum-prefix-length 2
-                      auto-completion-idle-delay 0.2
-                      auto-completion-private-snippets-directory nil
-                      auto-completion-enable-snippets-in-popup t 
-                      auto-completion-enable-help-tooltip t
-                      auto-completion-use-company-box nil
-                      auto-completion-enable-sort-by-usage t)
      better-defaults
      emacs-lisp
      (git :variables
