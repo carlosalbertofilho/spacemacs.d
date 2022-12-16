@@ -6,8 +6,11 @@
 ;; font - https://github.com/DarthFennec/highlight-indent-guides
 (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 
+
+;; OpenSSH passphrase caching, via ssh-agent
+(setenv "SSH_ASKPASS" "git-gui--askpass")
+
 ;; Global git commit mode
-(require 'git-commit)
 (global-git-commit-mode t)
 
 ;; Set personal config

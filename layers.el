@@ -7,6 +7,13 @@
 ;; packages of your choice and tweak some behaviors of Spacemacs loading.
 ;;
 
+;; OpenSSH passphrase caching, via ssh-agent
+;; https://github.com/magit/ssh-agency
+(require 'ssh-agency)
+
+;; Global git commit mode
+(require 'git-commit)
+
 ;; install highlight-indent-guides.el
 ;; https://github.com/DarthFennec/highlight-indent-guides
 (require 'highlight-indent-guides-method)
