@@ -37,6 +37,8 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     (unicode-fonts :variables
+                    unicode-fonts-enable-ligatures t)
      better-defaults
      emacs-lisp
      (org :variables
