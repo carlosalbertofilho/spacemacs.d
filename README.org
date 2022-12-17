@@ -1,4 +1,4 @@
-#+title: READEME
+#+title: README
 #+author: Carlos Alberto Filho
 #+date: 30 Nov 2022
 
@@ -33,7 +33,7 @@ For more information visit the [[https://www.spacemacs.org/doc/DOCUMENTATION.htm
 + xclipboard
 + treemacs
 
-* WebDev layers
+* WebDev more layers included
 
 + Checkout on WebDev branch
 #+BEGIN_SRC bash
@@ -47,7 +47,7 @@ For more information visit the [[https://www.spacemacs.org/doc/DOCUMENTATION.htm
     ./spacemacs.d/dependenciesInstall.sh
   #+END_SRC
 
-** Layers included
+** Layers  included
 + html
 + react
 + javascript
