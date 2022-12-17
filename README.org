@@ -9,23 +9,46 @@ For more information visit the [[https://www.spacemacs.org/doc/DOCUMENTATION.htm
 
 * Install Steps
 + Clone Repository
-  #+BEGIN_SRC bash
+#+BEGIN_SRC bash
   git clone https://github.com/carlosalbertofilho/spacemacs.d.git .spacemacs.d
-  #+END_SRC
+#+END_SRC
+
+
+** Default layer 
++ unicode-fonts
++ better-defaults
++ org
++ latex
++ markdown
++ pdf
++ git
++ auto-completion
++ helm
++ lsp
++ multiple-cursors
++ shell-scripts
++ shell
++ spell-checking
++ version-control
++ xclipboard
++ treemacs
+
+* WebDev layers
+
++ Checkout on WebDev branch
+#+BEGIN_SRC bash
+  git checkout webDev
+#+END_SRC
+
+
 + Install dependencies
   #+BEGIN_SRC bash
     chmod +x spacemacs.d/dependenciesInstall.sh
     ./spacemacs.d/dependenciesInstall.sh
   #+END_SRC
 
+** Layers included
++ html
++ react
++ javascript
 
-* Layers included
-+ auto-completion
-+ better-defaults
-+ git
-+ lsp
-+ markdown
-+ multiple-cursors
-+ org
-+ shell
-+ treemacs
