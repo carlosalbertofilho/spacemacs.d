@@ -37,6 +37,15 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     ;; Web Dev focused on React, JS, SCSS and HTML5
+     html
+     react
+     (javascript :variables
+                 javascript-import-tool 'import-js
+                 javascript-backend 'lsp
+                 javascript-fmt-tool 'prettier)
+
+     ;; Basic Config
      (unicode-fonts :variables
                     unicode-fonts-enable-ligatures t)
      better-defaults
