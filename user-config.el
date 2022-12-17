@@ -11,7 +11,7 @@
 (setenv "SSH_ASKPASS" "git-gui--askpass")
 
 ;; Global git commit mode
-(global-git-commit-mode t)
+(setq-local global-git-commit-mode t)
 
 ;; Set personal config
 (setq-local emmet-expand-jsx-className? t) 
