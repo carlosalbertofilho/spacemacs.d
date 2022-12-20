@@ -18,7 +18,7 @@
 
 ;; Defines Fire Code Fonts on GUI
 (set-face-attribute 'default nil :family "Fira Code")
-(set-face-attribute 'default nil :height 160)
+(set-face-attribute 'default nil :height 150)
 
 
 ;; Configure Ligature
