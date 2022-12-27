@@ -9,7 +9,7 @@
 
 ;; OpenSSH passphrase caching, via ssh-agent
 (setenv "SSH_ASKPASS" "/usr/local/bin/ksshaskpass")
-(getenv "SSH_AUTH_SOCK" )
+(setenv "SSH_AUTH_SOCK" "/tmp/ssh-8onuu10pXqve/agent.13154")
 
 
 ;; Global git commit mode
