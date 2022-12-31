@@ -2,15 +2,12 @@
 ;; This is the place where most of your configurations should be done. Unless it is explicitly specified that a
 ;; variable should be set before a package is loaded, you should place your code here.
 
+;; setup roswell
+(setq inferior-lisp-program "ros -Q run")
+
 ;; Install Highlight indent guides
 ;; font - https://github.com/DarthFennec/highlight-indent-guides
 (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-
-
-;; OpenSSH passphrase caching, via ssh-agent
-(setenv "SSH_ASKPASS" "/usr/local/bin/ksshaskpass")
-(setenv "SSH_AUTH_SOCK" "/tmp/ssh-8onuu10pXqve/agent.13154")
-
 
 ;; Global git commit mode
 (setq-local global-git-commit-mode t)
